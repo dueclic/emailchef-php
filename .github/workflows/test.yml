@@ -1,0 +1,28 @@
+name: Run Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v3
+        with:
+          php-version: '8.1'
+
+      - name: Install dependencies
+        run: composer install
+
+      - name: Run tests
+        env:
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+          PHPUNIT_AUTHKEY: ${{ secrets.PHPUNIT_AUTHKEY }}
+          PHPUNIT_CONSUMER_KEY: ${{ secrets.PHPUNIT_CONSUMER_KEY }}
+          PHPUNIT_CONSUMER_SECRET: ${{ secrets.PHPUNIT_CONSUMER_SECRET }}
+          PHPUNIT_API_EMAIL: ${{ secrets.PHPUNIT_API_EMAIL }}
+          PHPUNIT_API_PASSWORD: ${{ secrets.PHPUNIT_API_PASSWORD }}
+        run: php vendor/bin/phpunit
