@@ -17,7 +17,7 @@ class GetAuthenticationTokenCommand
     {
         $response = $this->apiService->call('post', '/api/login', json_encode(array('username' => $username, 'password' => $password)));
         if ($response['code'] != '200') {
-            throw new \Exception('Unable to login');
+            throw new \Exception('Unable to login '.$username);
         } else {
             return $response['body']->authkey;
         }
