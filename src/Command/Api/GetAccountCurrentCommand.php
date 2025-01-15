@@ -22,6 +22,6 @@ class GetAccountCurrentCommand
         if ($response['code'] == '200') {
             return $response['body'];
         }
-        throw new \Exception('Unable to login', $response['code']);
+        throw new \Exception('Unable to get account infos', $response['code']);
     }
 }

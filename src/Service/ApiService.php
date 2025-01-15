@@ -29,7 +29,9 @@ class ApiService
         }
 
 
-        $response = $response->addHeader('Content-Type', 'application/json');
+        $response = $response
+            ->expectsJson()
+            ->addHeader('Content-Type', 'application/json');
 
         if (!empty($headers)) {
             $response = $response->addHeaders($headers);

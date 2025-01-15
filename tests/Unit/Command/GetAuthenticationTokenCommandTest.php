@@ -19,7 +19,7 @@ class GetAuthenticationTokenCommandTest extends GetCommandAbstract
 
 
         $c = new GetAuthenticationTokenCommand();
-        $result = $c->execute($this->email, $this->password);
+         $result = $c->execute($this->email, $this->password);
         $this->assertIsString($result);
     }
 }
